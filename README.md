@@ -3,6 +3,7 @@ clay-model
 
 A Javascript Model Implementation with Promises based on SpineJS Model
 
+
 Class methods
 
 ### Model.new(modelName, attributes...)
@@ -270,3 +271,29 @@ Unbind all events, or just certain events (as a comma seperated list), or a spec
 ### proxy(function)
 
 A JavaScript compatibility function, that will wrap the given function so that it's always executed in the context of the record.
+
+
+## Ajax
+
+Model comes with an interface for Ajax or other connectors. Define the connector after creating the model with 
+
+Model.ajax = AjaxConnector;
+
+You can find a reference of a Connector in clay-model-vfr
+
+Model.create( values, options ), modelInstance.save( options ) and modelInstance.destroy(options)
+
+All take an options argument, here are some values
+
+ignoreAjax: [true/false]: Will only make modifications locally without sending changes to the server.
+
+
+## API
+
+Used to execute custom API Calls, is defined by Ajax Connector
+
+```
+User.api( arguments... );
+
+
+

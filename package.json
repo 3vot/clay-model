@@ -8,5 +8,8 @@
   },
   "author": "roberto@rodriguezartav",
   "repository": "",
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "kew": "~0.5.0-alpha.1"
+  }
 }

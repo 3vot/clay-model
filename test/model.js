@@ -19,8 +19,6 @@ test("can update records", function(t){
 
   var asset = Asset.create({name: "test.pdf"});
 
-
-
   t.equal(Asset.first().name, "test.pdf");
 
   asset.name = "wem.pdf";
