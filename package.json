@@ -1,12 +1,12 @@
 {
   "name": "clay-model",
   "description": "A Javascript Model Implementation with Promises based on SpineJS Model",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "./lib/index.js",
   "scripts": {
     "test": "tape test/*.js"
   },
   "author": "roberto@rodriguezartav",
-  "repository":"",
+  "repository": "",
   "license": "BSD-2-Clause"
 }
