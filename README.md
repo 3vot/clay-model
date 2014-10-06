@@ -6,9 +6,9 @@ A Javascript Model Implementation with Promises based on SpineJS Model
 
 Class methods
 
-### Model.new(modelName, attributes...)
+### Model.setup(modelName, attributes...)
 
-var User = Model.new("User", [ "first_name", "last_name" ]);
+var User = Model.setup("User", [ "first_name", "last_name" ]);
 
 Set up the model and its attributes. This is required for every model, and should be called before anything else is.
 

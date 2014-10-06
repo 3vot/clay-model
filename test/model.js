@@ -7,7 +7,7 @@ var Model = require("../lib")
 
 test('Create Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"});
   t.deepEqual(Asset.first(), asset);
@@ -15,7 +15,7 @@ test('Create Records', function (t) {
 
 test("can update records", function(t){
   t.plan(3);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"});
 
@@ -31,7 +31,7 @@ test("can update records", function(t){
 
 test("can refresh existing records", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"});
   t.equal(Asset.first().name,"test.pdf");
@@ -47,7 +47,7 @@ test("can refresh existing records", function(t){
 test("can keep record clones in sync after refreshing the record", function(t){
   t.plan(5)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"});
   t.equal(Object.getPrototypeOf(asset), Asset.irecords[asset.id] );
@@ -68,7 +68,7 @@ test("can keep record clones in sync after refreshing the record", function(t){
 test("can destroy records", function(t){
   t.plan(2)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"});
   t.deepEqual(Asset.first(), asset);
@@ -80,7 +80,7 @@ test("can destroy records", function(t){
 test("can find records", function(t){
   t.plan(2)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
 
   var asset = Asset.create({name: "test.pdf"});
@@ -93,7 +93,7 @@ test("can find records", function(t){
 test("can use notFound fallback function if records are not found with find", function(t){
   t.plan(11)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   if(!sessionStorage) var sessionStorage = {clear: function(){} }
 
   var asset = Asset.create({name: "test.pdf"});
@@ -140,7 +140,7 @@ test("can use notFound fallback function if records are not found with find", fu
 test("can findAll records", function(t){
   t.plan(2)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
 
   var asset1 = Asset.create({name: "test1.pdf"}),
@@ -157,7 +157,7 @@ test("can findAll records", function(t){
 test("can use notFound fallback function if records are not found with findAll", function(t){
   t.plan(14)
   
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   if(!sessionStorage) var sessionStorage = {clear: function(){} }
 
   var asset1 = Asset.create({name: "test1.pdf"}),
@@ -202,7 +202,7 @@ test("can use notFound fallback function if records are not found with findAll",
 
 test("can check existence", function(t){
   t.plan(5)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset1 = Asset.create({id: 1, name: "test.pdf"});
   var asset2 = Asset.create({id: 2, name: "wem.pdf"});
@@ -219,7 +219,7 @@ test("can check existence", function(t){
 
 test("can reload", function(t){
   t.plan(3)
-      var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+      var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "test.pdf"}).dup(false);
 
@@ -235,7 +235,7 @@ test("can reload", function(t){
 
 test("can refresh", function(t){
   t.plan(1)
-      var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+      var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: 'foo.pdf'});
   var clone = asset.clone();
@@ -245,7 +245,7 @@ test("can refresh", function(t){
 
 test("can select records", function(t){
   t.plan(1)
-      var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+      var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset1 = Asset.create({name: "test.pdf"});
   var asset2 = Asset.create({name: "foo.pdf"});
@@ -257,7 +257,7 @@ test("can select records", function(t){
 
 test("can return all records", function(t){
   t.plan(1)
-      var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+      var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset1 = Asset.create({name: "test.pdf"});
   var asset2 = Asset.create({name: "foo.pdf"});
@@ -267,7 +267,7 @@ test("can return all records", function(t){
 
 test("can return a slice of records", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset0 = Asset.create({name: "test.pdf"});
   var asset1 = Asset.create({name: "foo1.pdf"});
@@ -282,7 +282,7 @@ test("can return a slice of records", function(t){
 
 test("can find records by attribute", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = Asset.create({name: "foo.pdf"});
   Asset.create({name: "test.pdf"});
@@ -296,7 +296,7 @@ test("can find records by attribute", function(t){
 
 test("can find first/last record", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var first = Asset.create({name: "foo.pdf"});
   Asset.create({name: "test.pdf"});
@@ -308,7 +308,7 @@ test("can find first/last record", function(t){
 
 test("can return first(x)/last(x) records", function(t){
       t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset0 = Asset.create({name: "test.pdf"});
   var asset1 = Asset.create({name: "foo1.pdf"});
@@ -324,7 +324,7 @@ test("can return first(x)/last(x) records", function(t){
 
 test("can destroy all records", function(t){
      t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   Asset.create({name: "foo.pdf"});
   Asset.create({name: "foo.pdf"});
@@ -336,7 +336,7 @@ test("can destroy all records", function(t){
 
 test("can delete all records", function(t){
       t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   Asset.create({name: "foo.pdf"});
   Asset.create({name: "foo.pdf"});
@@ -348,7 +348,7 @@ test("can delete all records", function(t){
 
 test("can be serialized into JSON", function(t){
       t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var asset = new Asset({name: "Johnson me!"});
 
@@ -357,7 +357,7 @@ test("can be serialized into JSON", function(t){
 
 test("can be deserialized from JSON", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
 
 
@@ -371,7 +371,7 @@ test("can be deserialized from JSON", function(t){
 
 test("can validate", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   Asset.include({
     validate: function(){
@@ -391,7 +391,7 @@ test("can validate", function(t){
 
 test("can have validation disabled", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.include({
     validate: function(){
       if ( !this.name )
@@ -406,21 +406,21 @@ test("can have validation disabled", function(t){
 
 test("should have an attribute hash", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = new Asset({name: "wazzzup!"});
   t.deepEqual(asset.attributes(),{name: "wazzzup!"});
 });
 
 test("attributes() should not return undefined atts", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = new Asset();
   t.deepEqual(asset.attributes(),{});
 });
 
 test("can load() attributes", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = new Asset();
   var result = asset.load({name: "In da' house"});
   t.equal(result,asset);
@@ -429,7 +429,7 @@ test("can load() attributes", function(t){
 
 test("can load() attributes respecting getters/setters", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.include({
     name: function(value){
       var ref = value.split(' ', 2);
@@ -448,7 +448,7 @@ test("can load() attributes respecting getters/setters", function(t){
 
 test("attributes() respects getters/setters", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.include({
     name: function(){
       return "Bob";
@@ -461,14 +461,14 @@ test("attributes() respects getters/setters", function(t){
 
 test("can generate ID", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "who's in the house?"});
   t.ok(asset.id);
 });
 
 test("can generate UUID if enabled", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.uuid = function(){ return 'fc0942b0-956f-11e2-9c95-9b0af2c6635d' };
   var asset = new Asset({name: "who's in the house?"});
   t.ok(asset.id);
@@ -479,7 +479,7 @@ test("can generate UUID if enabled", function(t){
 
 test("can be duplicated", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "who's your daddy?"});
   t.equal(Object.getPrototypeOf(asset.dup()),Asset.prototype);
 
@@ -492,7 +492,7 @@ test("can be duplicated", function(t){
 
 test("can be cloned", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "what's cooler than cool?"}).dup(false);
   t.notEqual(Object.getPrototypeOf(asset.clone()),Asset.prototype);
   t.equal(Object.getPrototypeOf(Object.getPrototypeOf(asset.clone())),Asset.prototype);
@@ -504,7 +504,7 @@ test("can be cloned", function(t){
 
 test("clones are dynamic", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "hotel california"});
 
   // reload reference
@@ -518,7 +518,7 @@ test("clones are dynamic", function(t){
 
 test("create or save should return a clone", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "what's cooler than cool?"});
   t.notEqual(Object.getPrototypeOf(asset),Asset.prototype);
   t.equal(Object.getPrototypeOf(Object.getPrototypeOf(asset)),Asset.prototype);
@@ -526,12 +526,12 @@ test("create or save should return a clone", function(t){
 
 test("should be able to be subclassed", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.extend({
     aProperty: true
   });
 
-  var File = Asset.new("File");
+  var File = Asset.setup("File");
 
   t.ok(File.aProperty);
   t.equal(File.className,"File");
@@ -541,7 +541,7 @@ test("should be able to be subclassed", function(t){
 
 test("dup should take a newRecord argument, which controls if a new record is returned", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "hotel california"});
   t.notOk(asset.dup().id)
   t.ok(asset.dup().isNew());
@@ -552,7 +552,7 @@ test("dup should take a newRecord argument, which controls if a new record is re
 
 test("should be able to change ID", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "hotel california"});
   t.ok(asset.id);
   asset.changeID("foo");
@@ -563,7 +563,7 @@ test("should be able to change ID", function(t){
 
 test("eql should respect ID changes", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset1 = Asset.create({name: "hotel california", id: "bar"});
   var asset2 = asset1.dup(false);
 
@@ -573,7 +573,7 @@ test("eql should respect ID changes", function(t){
 
 test("should not delete reference to cID when changing ID", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "hotel california"});
   var cid = asset.cid;
 
@@ -583,7 +583,7 @@ test("should not delete reference to cID when changing ID", function(t){
 
 test("new records should not be eql", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset1 = new Asset;
   var asset2 = new Asset;
   t.notOk(asset1.eql(asset2))
@@ -591,7 +591,7 @@ test("new records should not be eql", function(t){
 
 test("should generate unique cIDs", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.refresh({name: "Bob", id: 3});
   Asset.refresh({name: "Bob", id: 2});
   Asset.refresh({name: "Bob", id: 1});
@@ -600,7 +600,7 @@ test("should generate unique cIDs", function(t){
 
 test("should handle more than 10 cIDs correctly", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   for (i=0; i < 12; i++) {
     Asset.refresh({name: "Bob", id: i});
   }
@@ -609,7 +609,7 @@ test("should handle more than 10 cIDs correctly", function(t){
 
 test("should keep model references in sync", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   ref1 = Asset.create({name: "Bob"});
   ref2 = Asset.all()[0]
   ref1.updateAttribute("name", "Jack");
@@ -619,7 +619,7 @@ test("should keep model references in sync", function(t){
 
 test("should return records in the same order they were created", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   ref1 = Asset.create({name: "Bob", id: "1"});
   ref2 = Asset.create({name: "Jan", id: "some long string id"});
   ref3 = Asset.create({name: "Pat", id: "33"});
@@ -630,7 +630,7 @@ test("should return records in the same order they were created", function(t){
 
 test("should preserve relative order of records when instances created or destroyed", function(t){
   t.plan(7)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   ref1 = Asset.create({name: "Bob", id: "1"});
   ref2 = Asset.create({name: "Jan", id: "some long string id"});
@@ -649,7 +649,7 @@ test("should preserve relative order of records when instances created or destro
 
 test("should return records in the in the order defined by the @comparator", function(t) {
   t.plan(5)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   Asset.comparator = function(a,b) { return a.id - b.id };
   ref1 = Asset.create({name: "Bob", id: 3});
@@ -671,7 +671,7 @@ test("should return records in the in the order defined by the @comparator", fun
 
 test("can interate over records", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function test(){
     t.equal(1,1);
@@ -686,7 +686,7 @@ test("can interate over records", function(t){
 
 test("can fire create events", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function spy(){
     t.equal(1,1);
@@ -700,7 +700,7 @@ test("can fire create events", function(t){
 
   test("can fire save events", function(t){
     t.plan(2)
-    var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+    var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
     function spy(){
       t.equal(1,1);
@@ -714,7 +714,7 @@ test("can fire create events", function(t){
 
 test("can fire update events", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function spy(){
     t.equal(1,1);
@@ -731,7 +731,7 @@ test("can fire update events", function(t){
 
   test("can fire destroy events", function(t){
     t.plan(1)
-    var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+    var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
     function spy(){
       t.equal(1,1);
@@ -744,7 +744,7 @@ test("can fire update events", function(t){
 
   test("can fire destroy events when destroy all record with options", function(t){
     t.plan(1)
-    var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+    var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
     function spy(){
       t.equal(1,1);
@@ -760,7 +760,7 @@ test("can fire update events", function(t){
 
 test("can fire refresh events", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function spy(values, options){
     t.deepEqual(values, [])
@@ -801,7 +801,7 @@ test("can fire refresh events", function(t){
 
 test("can fire events on record", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   var asset = Asset.create({name: "cartoon world.png"});
   function spy(value){
     t.deepEqual(value, asset)
@@ -814,7 +814,7 @@ test("can fire events on record", function(t){
 
 test("can fire change events on record", function(t){
   t.plan(8)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function onCreate(value, type, options){
    // t.deepEqual(value, asset);
@@ -855,7 +855,7 @@ test("can fire change events on record", function(t){
 
 test("can fire error events", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   function spy(value, error){
     t.deepEqual(value,asset)
@@ -880,7 +880,7 @@ test("can fire error events", function(t){
 
 test("should be able to bind once", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -904,7 +904,7 @@ test("should be able to bind once", function(t){
 
   test("should be able to bind once on instance", function(t){
   t.plan(3)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -928,7 +928,7 @@ test("should be able to bind once", function(t){
 
 test("it should pass clones with events", function(t){
   t.plan(4)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   Asset.bind("create", function(asset){
     t.notDeepEqual(Object.getPrototypeOf(asset),Asset.prototype);
@@ -946,7 +946,7 @@ test("it should pass clones with events", function(t){
 
 test("should be able to unbind all instance events", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -963,7 +963,7 @@ test("should be able to unbind all instance events", function(t){
 
 test("should be able to unbind individual instance events", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -985,7 +985,7 @@ test("should be able to unbind individual instance events", function(t){
 
 test("should be able to unbind individual callbacks to individual instance events", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1010,7 +1010,7 @@ test("should be able to unbind individual callbacks to individual instance event
 
 test("should be able to unbind a single event that uses a callback another event is bind to.", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1034,7 +1034,7 @@ test("should be able to unbind a single event that uses a callback another event
 
 test("should be able to bind and unbind multiple events with a single call.", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1058,7 +1058,7 @@ test("should be able to bind and unbind multiple events with a single call.", fu
 
 test("should be able to unbind all events if no arguments given", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1079,7 +1079,7 @@ test("should be able to unbind all events if no arguments given", function(t){
 
 test("should not be able to unbind all events if given and undefined object", function(t){
   t.plan(2)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1101,7 +1101,7 @@ test("should not be able to unbind all events if given and undefined object", fu
 
 test("should not unbind class-level callbacks", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1119,7 +1119,7 @@ test("should not unbind class-level callbacks", function(t){
 
 test("should unbind events on instance destroy", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){
@@ -1135,7 +1135,7 @@ test("should unbind events on instance destroy", function(t){
 
 test("callbacks should still work on ID changes", function(t){
   t.plan(1)
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
 
   var calls = 0;
   function spy(value, options){

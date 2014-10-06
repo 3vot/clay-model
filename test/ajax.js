@@ -20,7 +20,7 @@ function Ajax(eventName, model, options){
 
 test('Create Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.post = function(model, options){
@@ -45,7 +45,7 @@ test('Create Records', function (t) {
 
 test('update Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.put = function(model, options){
@@ -69,7 +69,7 @@ test('update Records', function (t) {
 
 test('delete Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.del = function(model, options){
@@ -95,7 +95,7 @@ test('delete Records', function (t) {
 
 test('Query Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.query = function(model, options){
@@ -117,7 +117,7 @@ test('Query Records', function (t) {
 
 test('Read Records', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.get = function(id, options){
@@ -139,7 +139,7 @@ test('Read Records', function (t) {
 
 test('Api', function (t) {
   t.plan(1);
-  var Asset = Model.new("Asset", ["name", "visible", "contact_methods"]);
+  var Asset = Model.setup("Asset", ["name", "visible", "contact_methods"]);
   Asset.ajax = Ajax;
 
   Ajax.api = function(){

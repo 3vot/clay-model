@@ -10,7 +10,7 @@ var Local = require("../lib/local")
 test("should persist attributes", function(t){
 	t.plan(2);
 
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
   User.extend(Local);
   User.create({name: "Bob"});
   User.fetch();
@@ -22,7 +22,7 @@ test("should persist attributes", function(t){
 
  test("should work with cIDs", function(t){
  	t.plan(1);
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
 
   User.refresh([
     {name: "Bob", id: "c-1"},
@@ -35,7 +35,7 @@ test("should persist attributes", function(t){
 
 test("should work with a blank refresh", function(t){
 	t.plan(1);
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
   
 	User.refresh([]);
 	t.equal(User.idCounter,0);
@@ -43,7 +43,7 @@ test("should work with a blank refresh", function(t){
 
 test("should store User JSON data in localStorage", function(t){
 	t.plan(2);
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
   User.extend(Local);
 
   if(!localStorage) var localStorage = Local.localStorage;
@@ -63,7 +63,7 @@ test("should store User JSON data in localStorage", function(t){
 
 test("should read User JSON data from localStorage and refresh User", function(t){
 	t.plan(2);
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
   User.extend(Local);
 
   if(!localStorage) var localStorage = Local.localStorage;
@@ -81,7 +81,7 @@ test("should read User JSON data from localStorage and refresh User", function(t
 
 test("should not delete existing records when set clear option to false", function(t){
   t.plan(2);
-	var User = Model.new("User", ["name"]);
+	var User = Model.setup("User", ["name"]);
   User.extend(Local);
 
   if(!localStorage) var localStorage = Local.localStorage;
