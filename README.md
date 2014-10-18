@@ -121,10 +121,6 @@ Creates a new record with the given attributes. Returns false if the record's va
 
 Destroys the record with the given ID.
 
-### Model.fetch([function])
-
-If passed a function, @fetch() adds that function as a listener to the fetch event. Otherwise, it triggers the fetch event.
-
 ### Model.toJSON()
 
 Utility function so the model has a valid JSON representation (shows all records).
