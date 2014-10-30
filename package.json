@@ -6,8 +6,8 @@
   "scripts": {
     "test": "tape test/*.js"
   },
-  "author": "roberto@rodriguezartav",
-  "repository": "",
+  "author": "roberto@rodriguezartavia.com",
+  "repository": "https://github.com/3vot/clay-model",
   "license": "BSD-2-Clause",
   "devDependencies": {
     "kew": "~0.5.0-alpha.1",
