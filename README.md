@@ -279,17 +279,26 @@ You can find a reference of a Connector in clay-model-vfr
 
 Model.create( values, options ), modelInstance.save( options ) and modelInstance.destroy(options)
 
-All take an options argument, here are some values
-
+## IgnoreAjax
 ignoreAjax: [true/false]: Will only make modifications locally without sending changes to the server.
 
+Use ignoreAjax flag so that actions are not sent to the server, this is useful when making adjustments after server validation, recovering for errors. For example, it is used after a Create Fails, to destroy the locally created object. 
 
-## API
+``` car.destroy({ignoreAjax: true}) ```
 
-Used to execute custom API Calls, is defined by Ajax Connector
+The create is different
+``` Car.create({brand: "Toyota"}, { ignoreAjax: true }) ```
 
-```
-User.api( arguments... );
+## Promises
+All calls are based on promises if an AjaxConnector was attached to the model.
+
+``` Car.create({brand: "Toyota"}).then( function(car){ .... } ).fail(function(err){ ... } ); ```
+
+## API and VFR
+API and VFR are used with clay-model-vfr for Salesforce Visualforce Remoting, when used elsewhere they are unavailable.
+
+## Dependencies
+Clay Model uses no dependencies
 
 
 
