@@ -1,7 +1,11 @@
 clay-model
 ==========
 
-A Javascript Model Implementation with Promises based on SpineJS Model
+The most versatile Javascript Model, with several AJAX connectors for REST INCLUDING loopback, saleforce api, salesforce remoting. Writting a new connector takes very little time, you'll be able to connect to your API or any other cloud based data store.
+
+https://github.com/3vot/clay-model-salesforce-api
+https://github.com/3vot/clay-model-strongloop
+https://github.com/3vot/clay-model-vfr
 
 
 Class methods
