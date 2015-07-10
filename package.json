@@ -1,7 +1,7 @@
 {
   "name": "clay-model",
   "description": "A Javascript Model Implementation with Promises based on SpineJS Model",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "./lib/index.js",
   "scripts": {
     "test": "tape test/*.js"
