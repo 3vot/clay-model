@@ -298,6 +298,11 @@ All calls are based on promises if an AjaxConnector was attached to the model.
 
 ``` Car.create({brand: "Toyota"}).then( function(car){ .... } ).fail(function(err){ ... } ); ```
 
+## Database Events
+
+If you'd like to bind to update, create and destroy after it occured in the API, then use db_create, db_update and db_destroy.
+
+
 ## API and VFR
 API and VFR are used with clay-model-vfr for Salesforce Visualforce Remoting, when used elsewhere they are unavailable.
 
